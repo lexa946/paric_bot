@@ -2,14 +2,14 @@ version: "3"
 
 services:
   bot:
-    build: ./docker/bot
+    build: ./bot.Dockerfile
     restart: always
 #    volumes:
 #      - .:.:ro
 #    image: paric_bot:latest
 
   api:
-    build: ./docker/api
+    build: ./api.Dockerfile
     restart: always
 #    volumes:
 #      - .:.:ro
