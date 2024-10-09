@@ -2,10 +2,13 @@ version: "3"
 
 services:
   bot:
+    build: ./docker/bot
     restart: always
-    image: paric_bot:latest
+#    image: paric_bot:latest
 
-
+  api:
+    build: ./docker/api
+    restart: always
 
 
   nginx:
