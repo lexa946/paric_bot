@@ -1,11 +1,10 @@
 version: "3"
 
 services:
-  paric_bot:
+  bot:
     restart: always
     image: paric_bot:latest
-#    ports:
-#      - "8081:80"
+
 
 
 
