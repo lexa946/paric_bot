@@ -2,18 +2,12 @@ version: "3"
 
 services:
   bot:
-    build: ./bot.Dockerfile
     restart: always
-#    volumes:
-#      - .:.:ro
-#    image: paric_bot:latest
+    image: paric_bot:latest
 
   api:
-    build: ./api.Dockerfile
     restart: always
-#    volumes:
-#      - .:.:ro
-
+    image: paric_api:latest
 
   nginx:
     restart: always
