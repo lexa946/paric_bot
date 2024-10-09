@@ -4,11 +4,15 @@ services:
   bot:
     build: ./docker/bot
     restart: always
+    volumes:
+      - .:.
 #    image: paric_bot:latest
 
   api:
     build: ./docker/api
     restart: always
+    volumes:
+      - .:.
 
 
   nginx:
