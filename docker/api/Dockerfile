@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 LABEL authors="pozhar"
 
-#COPY . .
+COPY ../../ .
 
 RUN pip install -r requirements.txt
 
