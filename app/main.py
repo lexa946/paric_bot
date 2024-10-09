@@ -20,8 +20,10 @@ async def lifespan(app: FastAPI):
     dp.include_router(user_router)
     dp.include_router(admin_router)
     await start_bot()
-    await bot.set_webhook(url=settings.WEBHOOK_URL, allowed_updates=dp.resolve_used_update_types(),
+    response = await bot.set_webhook(url=settings.WEBHOOK_URL, allowed_updates=dp.resolve_used_update_types(),
                           drop_pending_updates=True)
+
+    logging.info(f"{response=}")
     logging.info(f"Webhook set to {settings.WEBHOOK_URL}")
     yield
     logging.info("Shutting down bot...")
