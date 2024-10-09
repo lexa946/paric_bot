@@ -1,0 +1,7 @@
+.venv
+.env
+
+.idea
+.pytest_cache
+
+test.py
