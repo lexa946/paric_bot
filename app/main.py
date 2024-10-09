@@ -1,10 +1,8 @@
-from aiogram.types import Update
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 import logging
-
-from starlette.staticfiles import StaticFiles
-
 
 from app.pages.router import router as page_router
 from app.api.routers import router as api_router
@@ -17,11 +15,16 @@ app.mount('/static', StaticFiles(directory='app/static'), name='static')
 app.include_router(page_router)
 app.include_router(api_router)
 
-
-@app.post("/webhook")
-async def webhook(request: Request)->None:
-    logging.info("Received webhook request")
-    update = Update.model_validate(await request.json(), context={"bot":bot})
-    await dp.feed_update(bot=bot, update=update)
-    logging.info("Update processed")
-
+origins = [
+    'http://localhost:8080', 'http://0.0.0.0',
+    'http://alex.pozharsite.ru',
+    "http://db.pozharsite.ru",
+    "http://bots.pozharsite.ru", "https://bots.pozharsite.ru",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["POST", "GET"],
+    allow_headers=["*"],
+)
